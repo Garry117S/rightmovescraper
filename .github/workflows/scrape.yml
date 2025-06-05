@@ -28,9 +28,12 @@ jobs:
       - name: Read results.json into env variable
         id: readjson
         run: |
-          echo "RESULTS<<EOF" >> $GITHUB_ENV
-          cat results.json >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          {
+            echo "RESULTS<<EOF"
+            cat results.json
+            echo "EOF"
+          } >> $GITHUB_ENV
+
 
 
       - name: Send email with results in body
