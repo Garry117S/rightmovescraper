@@ -25,14 +25,13 @@ jobs:
         run: python scraper.py
 
 
-      - name: Read results.json into env variable
+      - name: Read results.json into output
         id: readjson
         run: |
-          {
-            echo "RESULTS<<EOF"
-            cat results.json
-            echo "EOF"
-          } >> $GITHUB_ENV
+          echo "json_output<<EOF" >> $GITHUB_OUTPUT
+          cat results.json >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
 
 
 
@@ -52,6 +51,6 @@ jobs:
 
             Here are the latest Rightmove results:
 
-            ${{ env.RESULTS }}
+            ${{ steps.readjson.outputs.json_output }}
 
             — GitHub Actions
