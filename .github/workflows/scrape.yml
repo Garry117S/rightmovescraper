@@ -24,8 +24,8 @@ jobs:
     - name: Run scraper
       run: python scraper.py
 
-    - name: Upload scraped data as artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: scraped-results
-        path: results.json
+    name: Upload scraped data as artifact
+    uses: actions/upload-artifact@v4
+    with:
+      name: scraped-results
+      path: results.json
