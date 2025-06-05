@@ -10,6 +10,74 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run scraper
+      run: python scraper.py
+
+    - name: Send email with inline JSON
+      env:
+        EMAIL_USER: 1337.david.smith.1337
+        EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
+        EMAIL_TO: dragoneternaluk@gmail.com
+      run: |
+        python - <<EOF
+        import smtplib
+        import json
+        from email.mime.text import MIMEText
+        from email.mime.multipart import MIMEMultipart
+
+        # Load results.json and format it
+        with open('results.json') as f:
+            data = json.load(f)
+        body = json.dumps(data, indent=2)
+
+        msg = MIMEMultipart()
+        msg['From'] = "${EMAIL_USER}"
+        msg['To'] = "${EMAIL_TO}"
+        msg['Subject'] = "Rightmove Results - GitHub Actions"
+
+        msg.attach(MIMEText("Here are the latest results:\n\n" + body, "plain"))
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login("${EMAIL_USER}", "${EMAIL_PASS}")
+            server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
+        EOF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+name: Scrape Rightmove
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
