@@ -44,7 +44,6 @@ jobs:
           to: dragoneternaluk@gmail.com
           from: GitHub Actions <your-email@gmail.com>
           content_type: text/plain
-          content_type: text/plain
           body: |
             Hello,
 
