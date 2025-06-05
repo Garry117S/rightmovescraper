@@ -2,8 +2,8 @@ name: Scrape Rightmove
 
 on:
   schedule:
-    - cron: "0 */6 * * *"  # Every 6 hours
-  workflow_dispatch:       # Allow manual run
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
 
 jobs:
   scrape:
@@ -24,8 +24,21 @@ jobs:
       - name: Run scraper
         run: python scraper.py
 
-      - name: Upload scraped data as artifact
-        uses: actions/upload-artifact@v4
+      - name: Send email with results
+        uses: dawidd6/action-send-mail@v3
         with:
-          name: scraped-results
-          path: results.json
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: 1337.david.smith.1337
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Rightmove Results - ${{ github.run_number }}"
+          to: dragoneternaluk@gmail.com
+          from: GitHub Actions <your-email@gmail.com>
+          content_type: text/plain
+          body: |
+            Hi,
+
+            Please find the attached property results from the latest scrape.
+
+            – GitHub Actions
+          attachments: results.json
