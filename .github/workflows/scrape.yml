@@ -24,7 +24,16 @@ jobs:
       - name: Run scraper
         run: python scraper.py
 
-      - name: Send email with results
+
+      - name: Read results.json into env variable
+        id: readjson
+        run: |
+          echo "RESULTS<<EOF" >> $GITHUB_ENV
+          cat results.json >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+
+      - name: Send email with results in body
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -35,10 +44,12 @@ jobs:
           to: dragoneternaluk@gmail.com
           from: GitHub Actions <your-email@gmail.com>
           content_type: text/plain
+          content_type: text/plain
           body: |
-            Hi,
+            Hello,
 
-            Please find the attached property results from the latest scrape.
+            Here are the latest Rightmove results:
 
-            – GitHub Actions
-          attachments: results.json
+            ${{ env.RESULTS }}
+
+            — GitHub Actions
