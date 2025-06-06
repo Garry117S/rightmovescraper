@@ -39,10 +39,8 @@ jobs:
         # Load results.json and format it
         with open('results.json') as f:
             data = json.load(f)
-        body = "\n\n".join(
-            "\n".join(f"{k}: {v}" for k, v in item.items())
-            for item in data
-        )
+        body = json.dumps(data, indent=2)
+
         msg = MIMEMultipart()
         msg['From'] = "${EMAIL_USER}"
         msg['To'] = "${EMAIL_TO}"
