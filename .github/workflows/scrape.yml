@@ -39,7 +39,7 @@ jobs:
         # Load results.json and format it
         with open('results.json') as f:
             data = json.load(f)
-        body = json.dumps(data, indent=2)
+        body = json.dumps(data, indent=2, ensure_ascii=False)
 
         msg = MIMEMultipart()
         msg['From'] = "${EMAIL_USER}"
