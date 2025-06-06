@@ -46,7 +46,7 @@ jobs:
         msg['To'] = "${EMAIL_TO}"
         msg['Subject'] = "Rightmove Results - GitHub Actions"
 
-        msg.attach(MIMEText("Here are the latest results:\n\n" + body, "plain"))
+        msg.attach(MIMEText("Here are the latest results:\n\n" + body, "plain", "utf-8"))
 
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login("${EMAIL_USER}", "${EMAIL_PASS}")
