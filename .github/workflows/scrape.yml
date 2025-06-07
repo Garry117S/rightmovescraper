@@ -29,14 +29,7 @@ jobs:
           exit 0
         fi
 
-    - name: Commit updated seen.json and results.json
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add seen.json results.json || true
-        git diff --cached --quiet || (git commit -m "Update seen and results" && git push)
-
-    - name: Send email with inline JSON
+    - name: Send email with HTML formatting
       env:
         EMAIL_USER: 1337.david.smith.1337
         EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
@@ -45,21 +38,70 @@ jobs:
         python - <<EOF
         import smtplib
         import json
-        from email.mime.text import MIMEText
         from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
 
+        # Load JSON data
         with open('results.json', encoding='utf-8') as f:
             data = json.load(f)
-        body = json.dumps(data, indent=2, ensure_ascii=False)
 
-        msg = MIMEMultipart()
-        msg['From'] = "${EMAIL_USER}"
-        msg['To'] = "${EMAIL_TO}"
-        msg['Subject'] = "Rightmove Results - GitHub Actions"
+        count = len(data)
+        plain_lines = [f"Found {count} new properties:\n"]
+        html_lines = [f"<h2>Found {count} new properties:</h2><ul>"]
 
-        msg.attach(MIMEText("Here are the latest results:\n\n" + body, "plain", "utf-8"))
+        for pid, prop in data.items():
+            address = prop.get("address", "")
+            price = prop.get("price", "")
+            ptype = prop.get("type", "")
+            beds = prop.get("beds", "")
+            baths = prop.get("baths", "")
+            images = prop.get("images", "")
+            desc = prop.get("description", "")
+
+            # Plain text block
+            plain_lines.append(f"""
+Address: {address}
+Price: {price}
+Type: {ptype}
+Beds: {beds}
+Baths: {baths}
+Images: {images}
+Description: {desc}
+------------------------------""")
+
+            # HTML block
+            html_lines.append(f"""
+<li>
+  <strong>Address:</strong> {address}<br>
+  <strong>Price:</strong> {price}<br>
+  <strong>Type:</strong> {ptype}<br>
+  <strong>Beds:</strong> {beds} | <strong>Baths:</strong> {baths} | <strong>Images:</strong> {images}<br>
+  <strong>Description:</strong> {desc}
+  <hr>
+</li>
+""")
+
+        html_lines.append("</ul>")
+
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = "Rightmove Results - GitHub Actions"
+        msg["From"] = "${EMAIL_USER}"
+        msg["To"] = "${EMAIL_TO}"
+
+        part1 = MIMEText("\n".join(plain_lines), "plain", "utf-8")
+        part2 = MIMEText("".join(html_lines), "html", "utf-8")
+
+        msg.attach(part1)
+        msg.attach(part2)
 
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login("${EMAIL_USER}", "${EMAIL_PASS}")
             server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
         EOF
+
+    - name: Commit updated seen.json and results.json if new listings found
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add seen.json results.json || true
+        git diff --cached --quiet || (git commit -m "Update seen and results" && git push)
