@@ -57,7 +57,6 @@ jobs:
             images = prop.get("images", "")
             desc = prop.get("description", "")
 
-            # Append plain text lines individually to avoid YAML issues
             plain_lines.append(f"Address: {address}")
             plain_lines.append(f"Price: {price}")
             plain_lines.append(f"Type: {ptype}")
@@ -67,7 +66,6 @@ jobs:
             plain_lines.append(f"Description: {desc}")
             plain_lines.append("------------------------------")
 
-            # Append HTML lines
             html_lines.append(f"""
 <li>
   <strong>Address:</strong> {address}<br>
@@ -95,7 +93,7 @@ jobs:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             server.login("${EMAIL_USER}", "${EMAIL_PASS}")
             server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
-        EOF
+EOF
 
     - name: Commit updated seen.json and results.json if new listings found
       run: |
