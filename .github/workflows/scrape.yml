@@ -59,15 +59,15 @@ jobs:
             desc = prop.get("description", "")
 
             # Plain text block
-plain_lines.append(f"""Address: {address}
-Price: {price}
-Type: {ptype}
-Beds: {beds}
-Baths: {baths}
-Images: {images}
-Description: {desc}
-------------------------------
-""")
+        plain_lines.append(f"""Address: {address}
+        Price: {price}
+        Type: {ptype}
+        Beds: {beds}
+        Baths: {baths}
+        Images: {images}
+        Description: {desc}
+        ------------------------------
+        """)
 
 
 
