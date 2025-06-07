@@ -30,6 +30,8 @@ jobs:
         fi
 
     - name: Send email with HTML formatting
+      if: success() && hashFiles('results.json') != ''
+
       env:
         EMAIL_USER: 1337.david.smith.1337
         EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
@@ -98,6 +100,7 @@ jobs:
 
 
     - name: Commit updated seen.json and results.json if new listings found
+      if: success() && hashFiles('results.json') != ''
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
