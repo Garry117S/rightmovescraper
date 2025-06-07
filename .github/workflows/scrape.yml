@@ -41,7 +41,6 @@ jobs:
         from email.mime.multipart import MIMEMultipart
         from email.mime.text import MIMEText
 
-        # Load JSON data
         with open('results.json', encoding='utf-8') as f:
             data = json.load(f)
 
@@ -58,20 +57,17 @@ jobs:
             images = prop.get("images", "")
             desc = prop.get("description", "")
 
-            # Plain text block
-        plain_lines.append(f"""Address: {address}
-        Price: {price}
-        Type: {ptype}
-        Beds: {beds}
-        Baths: {baths}
-        Images: {images}
-        Description: {desc}
-        ------------------------------
-        """)
+            # Append plain text lines individually to avoid YAML issues
+            plain_lines.append(f"Address: {address}")
+            plain_lines.append(f"Price: {price}")
+            plain_lines.append(f"Type: {ptype}")
+            plain_lines.append(f"Beds: {beds}")
+            plain_lines.append(f"Baths: {baths}")
+            plain_lines.append(f"Images: {images}")
+            plain_lines.append(f"Description: {desc}")
+            plain_lines.append("------------------------------")
 
-
-
-            # HTML block
+            # Append HTML lines
             html_lines.append(f"""
 <li>
   <strong>Address:</strong> {address}<br>
