@@ -29,7 +29,6 @@ jobs:
           exit 0
         fi
 
-
     - name: Send email with inline JSON
       env:
         EMAIL_USER: 1337.david.smith.1337
@@ -42,8 +41,7 @@ jobs:
         from email.mime.text import MIMEText
         from email.mime.multipart import MIMEMultipart
 
-        # Load results.json and format it
-        with open('results.json') as f:
+        with open('results.json', encoding='utf-8') as f:
             data = json.load(f)
         body = json.dumps(data, indent=2, ensure_ascii=False)
 
@@ -58,3 +56,10 @@ jobs:
             server.login("${EMAIL_USER}", "${EMAIL_PASS}")
             server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
         EOF
+
+    - name: Commit updated seen.json and results.json if new listings found
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add seen.json results.json || true
+        git diff --cached --quiet || (git commit -m "Update seen and results" && git push)

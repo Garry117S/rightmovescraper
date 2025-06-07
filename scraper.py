@@ -3,16 +3,17 @@ from bs4 import BeautifulSoup
 import json
 import os
 import re
+from hashlib import md5
 
 url = "https://www.rightmove.co.uk/property-for-sale/find.html?searchLocation=Jesmond%2C+Newcastle+Upon+Tyne&useLocationIdentifier=true&locationIdentifier=REGION%5E13653&radius=0.0&maxDaysSinceAdded=3&_includeSSTC=on"
-headers = {
-    "User-Agent": "Mozilla/5.0"
-}
+headers = {"User-Agent": "Mozilla/5.0"}
 
 response = requests.get(url, headers=headers)
-soup = BeautifulSoup(response.text, 'html.parser')
+if response.status_code != 200:
+    print(f"Failed to fetch Rightmove page. Status code: {response.status_code}")
+    exit(1)
 
-# Find the results section
+soup = BeautifulSoup(response.text, 'html.parser')
 results_section = soup.find("section", class_="ResultsList_resultsSection__MVSi7 null")
 property_cards = results_section.find_all("div", class_="PropertyCard_propertyCardContainerWrapper__mcK1Z") if results_section else []
 
@@ -20,24 +21,28 @@ properties = {}
 
 for card in property_cards:
     a_tag = card.find("a", class_="PropertyCard_propertyCardAnchor__s2ZaP")
-    prop_id = a_tag.get("id", "no-id-found") if a_tag else "no-anchor"
+    if a_tag:
+        href = a_tag.get("href", "")
+        prop_id = a_tag.get("id") or md5(href.encode()).hexdigest()
+    else:
+        prop_id = "no-anchor"
 
-    address_tag = card.find("address")
-    address = address_tag.get_text(strip=True) if address_tag else "No address"
+    address = card.find("address")
+    address = address.get_text(strip=True) if address else "No address"
 
-    price_tag = card.find("div", class_="PropertyPrice_price__VL65t")
-    price = price_tag.get_text(strip=True) if price_tag else "No price"
+    price = card.find("div", class_="PropertyPrice_price__VL65t")
+    price = price.get_text(strip=True) if price else "No price"
 
-    type_tag = card.find("span", class_="PropertyInformation_propertyType__u8e76")
-    prop_type = type_tag.get_text(strip=True) if type_tag else "Unknown type"
+    prop_type = card.find("span", class_="PropertyInformation_propertyType__u8e76")
+    prop_type = prop_type.get_text(strip=True) if prop_type else "Unknown type"
 
-    beds_tag = card.find("span", class_="PropertyInformation_bedroomsCount___2b5R")
-    beds = beds_tag.get_text(strip=True) if beds_tag else "?"
+    beds = card.find("span", class_="PropertyInformation_bedroomsCount___2b5R")
+    beds = beds.get_text(strip=True) if beds else "?"
 
-    baths_tag = card.find("div", class_="PropertyInformation_bathContainer__ut8VY")
-    baths = "?"  # Default
-    if baths_tag:
-        bath_span = baths_tag.find("span", attrs={"aria-label": re.compile(r"\d+ in property")})
+    baths = "?"
+    bath_container = card.find("div", class_="PropertyInformation_bathContainer__ut8VY")
+    if bath_container:
+        bath_span = bath_container.find("span", attrs={"aria-label": re.compile(r"\d+ in property")})
         if bath_span:
             baths = bath_span.get_text(strip=True)
 
@@ -61,26 +66,32 @@ for card in property_cards:
         "description": description
     }
 
-# Load previously seen IDs
+# Load previously seen properties
 if os.path.exists("seen.json"):
     with open("seen.json", "r", encoding="utf-8") as f:
         seen_data = json.load(f)
 else:
     seen_data = {}
 
-# Find new properties only
+# Identify new properties
 new_properties = {
     pid: data for pid, data in properties.items()
     if pid not in seen_data
 }
 
-# Update seen.json
-with open("seen.json", "w", encoding="utf-8") as f:
-    json.dump(properties, f, indent=2, ensure_ascii=False)
+# Output some debug info
+if new_properties:
+    print(f"{len(new_properties)} new properties found:")
+    for pid, prop in new_properties.items():
+        print(f"- {prop['address']} | {prop['price']} | {prop['beds']} beds | {prop['images']} images")
+else:
+    print("No new properties found.")
 
-# Save only new properties if any
+# Save seen.json
+with open("seen.json", "w", encoding="utf-8") as f:
+    json.dump(dict(sorted(properties.items())), f, indent=2, ensure_ascii=False)
+
+# Save new ones to results.json
 if new_properties:
     with open("results.json", "w", encoding="utf-8") as f:
         json.dump(new_properties, f, indent=2, ensure_ascii=False)
-else:
-    print("No new properties found.")
