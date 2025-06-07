@@ -67,33 +67,33 @@ jobs:
             plain_lines.append("------------------------------")
 
             html_lines.append(f"""
-<li>
-  <strong>Address:</strong> {address}<br>
-  <strong>Price:</strong> {price}<br>
-  <strong>Type:</strong> {ptype}<br>
-  <strong>Beds:</strong> {beds} | <strong>Baths:</strong> {baths} | <strong>Images:</strong> {images}<br>
-  <strong>Description:</strong> {desc}
-  <hr>
-</li>
-""")
+        <li>
+          <strong>Address:</strong> {address}<br>
+          <strong>Price:</strong> {price}<br>
+          <strong>Type:</strong> {ptype}<br>
+          <strong>Beds:</strong> {beds} | <strong>Baths:</strong> {baths} | <strong>Images:</strong> {images}<br>
+          <strong>Description:</strong> {desc}
+          <hr>
+        </li>
+        """)
 
-        html_lines.append("</ul>")
+                html_lines.append("</ul>")
 
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = "Rightmove Results - GitHub Actions"
-        msg["From"] = "${EMAIL_USER}"
-        msg["To"] = "${EMAIL_TO}"
+                msg = MIMEMultipart("alternative")
+                msg["Subject"] = "Rightmove Results - GitHub Actions"
+                msg["From"] = "${EMAIL_USER}"
+                msg["To"] = "${EMAIL_TO}"
 
-        part1 = MIMEText("\n".join(plain_lines), "plain", "utf-8")
-        part2 = MIMEText("".join(html_lines), "html", "utf-8")
+                part1 = MIMEText("\n".join(plain_lines), "plain", "utf-8")
+                part2 = MIMEText("".join(html_lines), "html", "utf-8")
 
-        msg.attach(part1)
-        msg.attach(part2)
+                msg.attach(part1)
+                msg.attach(part2)
 
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login("${EMAIL_USER}", "${EMAIL_PASS}")
-            server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
-EOF
+                with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+                    server.login("${EMAIL_USER}", "${EMAIL_PASS}")
+                    server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
+        EOF
 
     - name: Commit updated seen.json and results.json if new listings found
       run: |
