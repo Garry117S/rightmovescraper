@@ -1,43 +1,65 @@
-- name: Run scraper
-  run: |
-    python scraper.py
-    if [ ! -s results.json ]; then
-      echo "No new results. Skipping commit and email."
-      exit 0
-    fi
+name: Scrape Rightmove
 
-- name: Commit updated seen.json and results.json
-  run: |
-    git config user.name "github-actions[bot]"
-    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    git add seen.json results.json || true
-    git diff --cached --quiet || (git commit -m "Update seen and results" && git push)
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
 
-- name: Send email with inline JSON
-  if: success()  # only if scraper found something and commit was successful
-  env:
-    EMAIL_USER: 1337.david.smith.1337
-    EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
-    EMAIL_TO: dragoneternaluk@gmail.com
-  run: |
-    python - <<EOF
-    import smtplib
-    import json
-    from email.mime.text import MIMEText
-    from email.mime.multipart import MIMEMultipart
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
 
-    with open('results.json', encoding='utf-8') as f:
-        data = json.load(f)
-    body = json.dumps(data, indent=2, ensure_ascii=False)
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
 
-    msg = MIMEMultipart()
-    msg['From'] = "${EMAIL_USER}"
-    msg['To'] = "${EMAIL_TO}"
-    msg['Subject'] = "Rightmove Results - GitHub Actions"
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
-    msg.attach(MIMEText("Here are the latest results:\n\n" + body, "plain", "utf-8"))
+    - name: Install dependencies
+      run: pip install -r requirements.txt
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-        server.login("${EMAIL_USER}", "${EMAIL_PASS}")
-        server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
-    EOF
+    - name: Run scraper
+      run: |
+        python scraper.py
+        if [ ! -s results.json ]; then
+          echo "No new results. Skipping commit and email."
+          exit 0
+        fi
+
+    - name: Commit updated seen.json and results.json
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add seen.json results.json || true
+        git diff --cached --quiet || (git commit -m "Update seen and results" && git push)
+
+    - name: Send email with inline JSON
+      env:
+        EMAIL_USER: 1337.david.smith.1337
+        EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
+        EMAIL_TO: dragoneternaluk@gmail.com
+      run: |
+        python - <<EOF
+        import smtplib
+        import json
+        from email.mime.text import MIMEText
+        from email.mime.multipart import MIMEMultipart
+
+        with open('results.json', encoding='utf-8') as f:
+            data = json.load(f)
+        body = json.dumps(data, indent=2, ensure_ascii=False)
+
+        msg = MIMEMultipart()
+        msg['From'] = "${EMAIL_USER}"
+        msg['To'] = "${EMAIL_TO}"
+        msg['Subject'] = "Rightmove Results - GitHub Actions"
+
+        msg.attach(MIMEText("Here are the latest results:\n\n" + body, "plain", "utf-8"))
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login("${EMAIL_USER}", "${EMAIL_PASS}")
+            server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
+        EOF
