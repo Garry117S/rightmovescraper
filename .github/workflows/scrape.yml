@@ -36,64 +36,65 @@ jobs:
         EMAIL_TO: dragoneternaluk@gmail.com
       run: |
         python - <<EOF
-import smtplib
-import json
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+        import smtplib
+        import json
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
 
-with open('results.json', encoding='utf-8') as f:
-    data = json.load(f)
+        with open('results.json', encoding='utf-8') as f:
+            data = json.load(f)
 
-count = len(data)
-plain_lines = [f"Found {count} new properties:\n"]
-html_lines = [f"<h2>Found {count} new properties:</h2><ul>"]
+        count = len(data)
+        plain_lines = [f"Found {count} new properties:\n"]
+        html_lines = [f"<h2>Found {count} new properties:</h2><ul>"]
 
-for pid, prop in data.items():
-    address = prop.get("address", "")
-    price = prop.get("price", "")
-    ptype = prop.get("type", "")
-    beds = prop.get("beds", "")
-    baths = prop.get("baths", "")
-    images = prop.get("images", "")
-    desc = prop.get("description", "")
+        for pid, prop in data.items():
+            address = prop.get("address", "")
+            price = prop.get("price", "")
+            ptype = prop.get("type", "")
+            beds = prop.get("beds", "")
+            baths = prop.get("baths", "")
+            images = prop.get("images", "")
+            desc = prop.get("description", "")
 
-    plain_lines.append(f"Address: {address}")
-    plain_lines.append(f"Price: {price}")
-    plain_lines.append(f"Type: {ptype}")
-    plain_lines.append(f"Beds: {beds}")
-    plain_lines.append(f"Baths: {baths}")
-    plain_lines.append(f"Images: {images}")
-    plain_lines.append(f"Description: {desc}")
-    plain_lines.append("------------------------------")
+            plain_lines.append(f"Address: {address}")
+            plain_lines.append(f"Price: {price}")
+            plain_lines.append(f"Type: {ptype}")
+            plain_lines.append(f"Beds: {beds}")
+            plain_lines.append(f"Baths: {baths}")
+            plain_lines.append(f"Images: {images}")
+            plain_lines.append(f"Description: {desc}")
+            plain_lines.append("------------------------------")
 
-    html_lines.append(f"""
-<li>
-  <strong>Address:</strong> {address}<br>
-  <strong>Price:</strong> {price}<br>
-  <strong>Type:</strong> {ptype}<br>
-  <strong>Beds:</strong> {beds} | <strong>Baths:</strong> {baths} | <strong>Images:</strong> {images}<br>
-  <strong>Description:</strong> {desc}
-  <hr>
-</li>
-""")
+            html_lines.append(f"""
+        <li>
+          <strong>Address:</strong> {address}<br>
+          <strong>Price:</strong> {price}<br>
+          <strong>Type:</strong> {ptype}<br>
+          <strong>Beds:</strong> {beds} | <strong>Baths:</strong> {baths} | <strong>Images:</strong> {images}<br>
+          <strong>Description:</strong> {desc}
+          <hr>
+        </li>
+        """)
 
-html_lines.append("</ul>")
+        html_lines.append("</ul>")
 
-msg = MIMEMultipart("alternative")
-msg["Subject"] = "Rightmove Results - GitHub Actions"
-msg["From"] = "${EMAIL_USER}"
-msg["To"] = "${EMAIL_TO}"
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = "Rightmove Results - GitHub Actions"
+        msg["From"] = "${EMAIL_USER}"
+        msg["To"] = "${EMAIL_TO}"
 
-part1 = MIMEText("\n".join(plain_lines), "plain", "utf-8")
-part2 = MIMEText("".join(html_lines), "html", "utf-8")
+        part1 = MIMEText("\n".join(plain_lines), "plain", "utf-8")
+        part2 = MIMEText("".join(html_lines), "html", "utf-8")
 
-msg.attach(part1)
-msg.attach(part2)
+        msg.attach(part1)
+        msg.attach(part2)
 
-with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-    server.login("${EMAIL_USER}", "${EMAIL_PASS}")
-    server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
-EOF
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login("${EMAIL_USER}", "${EMAIL_PASS}")
+            server.sendmail("${EMAIL_USER}", "${EMAIL_TO}", msg.as_string())
+        EOF
+
 
 
     - name: Commit updated seen.json and results.json if new listings found
