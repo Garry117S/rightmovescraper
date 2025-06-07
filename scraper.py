@@ -86,6 +86,9 @@ if new_properties:
         print(f"- {prop['address']} | {prop['price']} | {prop['beds']} beds | {prop['images']} images")
 else:
     print("No new properties found.")
+    if os.path.exists("results.json"):
+        os.remove("results.json")
+
 
 # Save seen.json
 with open("seen.json", "w", encoding="utf-8") as f:
