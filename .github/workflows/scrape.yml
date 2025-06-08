@@ -111,7 +111,7 @@ jobs:
     - name: Push results.json to rightmove-viewer repo
       if: success() && hashFiles('results.json') != ''
       run: |
-        git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/Garry117/rightmove-viewer.git
+        git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/Garry117s/rightmove-viewer.git
         cd rightmove-viewer
 
         mkdir -p data
