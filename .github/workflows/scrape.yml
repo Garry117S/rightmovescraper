@@ -106,3 +106,18 @@ jobs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add seen.json results.json || true
         git diff --cached --quiet || (git commit -m "Update seen and results" && git push)
+
+
+    - name: Push results.json to rightmove-viewer repo
+      if: success() && hashFiles('results.json') != ''
+      run: |
+        git clone https://x-access-token:${{ secrets.PAGES_DEPLOY_TOKEN }}@github.com/Garry117/rightmove-viewer.git
+        cd rightmove-viewer
+
+        mkdir -p data
+        cp ../results.json data/
+
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add data/results.json
+        git diff --cached --quiet || (git commit -m "Update results.json" && git push)
