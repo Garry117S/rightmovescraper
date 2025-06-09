@@ -32,16 +32,16 @@ jobs:
     - name: Append results to archive.json with timestamp
       run: |
         timestamp=$(date -u +"%Y-%m-%d %H:%M UTC")
-        jq -n --arg time "$timestamp" --slurpfile new latest.json \
-          '{ ($time): $new[0] }' > temp.json
+        jq --arg time "$timestamp" '[.[] | .timestamp = $time]' latest.json > temp.json
 
         if [ -f archive.json ]; then
-          jq -s '.[0] * .[1]' archive.json temp.json > combined.json
+          jq -s 'add' archive.json temp.json > combined.json
         else
           mv temp.json combined.json
         fi
 
         mv combined.json archive.json
+
 
     - name: Send email with HTML formatting
       env:
