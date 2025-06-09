@@ -32,7 +32,7 @@ jobs:
     - name: Append results to archive.json with timestamp
       run: |
         timestamp=$(date -u +"%Y-%m-%d %H:%M UTC")
-        jq -n --arg time "$timestamp" --slurpfile new results.json \
+        jq -n --arg time "$timestamp" --slurpfile new latest.json \
           '{ ($time): $new[0] }' > temp.json
 
         if [ -f archive.json ]; then
@@ -106,8 +106,8 @@ jobs:
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add seen.json results.json archive.json || true
-        git diff --cached --quiet || (git commit -m "Update seen, results, and archive" && git push)
+        git add seen.json latest.json archive.json || true
+        git diff --cached --quiet || (git commit -m "Update seen, latest, and archive" && git push)
 
     - name: Push archive.json to viewer repo (for GitHub Pages)
       env:
