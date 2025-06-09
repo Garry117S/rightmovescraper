@@ -24,7 +24,7 @@ jobs:
     - name: Run scraper
       run: |
         python scraper.py
-        if [ ! -s results.json ]; then
+        if [ ! -s latest.json ]; then
           echo "No new results. Skipping email and upload."
           exit 0
         fi
@@ -54,7 +54,7 @@ jobs:
         from email.mime.multipart import MIMEMultipart
         from email.mime.text import MIMEText
 
-        with open('results.json', encoding='utf-8') as f:
+        with open('latest.json', encoding='utf-8') as f:
             data = json.load(f)
 
         count = len(data)
