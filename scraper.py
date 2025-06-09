@@ -5,6 +5,7 @@ import os
 import re
 from hashlib import md5
 from datetime import datetime
+import glob
 
 # === CONFIGURATION ===
 # url = "https://www.rightmove.co.uk/property-for-sale/find.html?searchLocation=Jesmond%2C+Newcastle+Upon+Tyne&useLocationIdentifier=true&locationIdentifier=REGION%5E13653&radius=0.0&maxDaysSinceAdded=3&_includeSSTC=on"
@@ -123,3 +124,20 @@ if new_properties:
         json.dump(new_properties, f, indent=2, ensure_ascii=False)
 else:
     print("No new properties. Skipping latest.json and archive write.")
+
+archive = []
+for filename in sorted(glob.glob("results_*.json"), reverse=True):
+    with open(filename, "r", encoding="utf-8") as f:
+        try:
+            data = json.load(f)
+            # Add timestamp to each property
+            timestamp = filename.replace("results_", "").replace(".json", "")
+            for item in data.values():
+                item["timestamp"] = timestamp
+                archive.append(item)
+        except json.JSONDecodeError:
+            print(f"Warning: Skipping invalid file {filename}")
+
+# Save to archive.json
+with open("archive.json", "w", encoding="utf-8") as f:
+    json.dump(archive, f, indent=2, ensure_ascii=False)
