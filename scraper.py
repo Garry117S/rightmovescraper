@@ -4,10 +4,13 @@ import json
 import os
 import re
 from hashlib import md5
+from datetime import datetime
 
+# === CONFIGURATION ===
 url = "https://www.rightmove.co.uk/property-for-sale/find.html?searchLocation=Jesmond%2C+Newcastle+Upon+Tyne&useLocationIdentifier=true&locationIdentifier=REGION%5E13653&radius=0.0&maxDaysSinceAdded=3&_includeSSTC=on"
 headers = {"User-Agent": "Mozilla/5.0"}
 
+# === FETCH PAGE ===
 response = requests.get(url, headers=headers)
 if response.status_code != 200:
     print(f"Failed to fetch Rightmove page. Status code: {response.status_code}")
@@ -19,6 +22,7 @@ property_cards = results_section.find_all("div", class_="PropertyCard_propertyCa
 
 properties = {}
 
+# === PARSE PROPERTIES ===
 for card in property_cards:
     a_tag = card.find("a", class_="PropertyCard_propertyCardAnchor__s2ZaP")
     if a_tag:
@@ -66,35 +70,37 @@ for card in property_cards:
         "description": description
     }
 
-# Load previously seen properties
+# === LOAD SEEN DATA ===
+seen_data = {}
 if os.path.exists("seen.json"):
     with open("seen.json", "r", encoding="utf-8") as f:
         seen_data = json.load(f)
-else:
-    seen_data = {}
 
-# Identify new properties
+# === FIND NEW PROPERTIES ===
 new_properties = {
     pid: data for pid, data in properties.items()
     if pid not in seen_data
 }
 
-# Output some debug info
+# === DEBUG OUTPUT ===
 if new_properties:
     print(f"{len(new_properties)} new properties found:")
     for pid, prop in new_properties.items():
         print(f"- {prop['address']} | {prop['price']} | {prop['beds']} beds | {prop['images']} images")
 else:
     print("No new properties found.")
-    if os.path.exists("results.json"):
-        os.remove("results.json")
 
-
-# Save seen.json
+# === SAVE SEEN AND RESULTS ===
 with open("seen.json", "w", encoding="utf-8") as f:
     json.dump(dict(sorted(properties.items())), f, indent=2, ensure_ascii=False)
 
-# Save new ones to results.json
 if new_properties:
-    with open("results.json", "w", encoding="utf-8") as f:
+    # Save to latest.json for viewer
+    with open("latest.json", "w", encoding="utf-8") as f:
+        json.dump(new_properties, f, indent=2, ensure_ascii=False)
+
+    # Save to timestamped file for history
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
+    filename = f"results_{timestamp}.json"
+    with open(filename, "w", encoding="utf-8") as f:
         json.dump(new_properties, f, indent=2, ensure_ascii=False)
