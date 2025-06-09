@@ -111,13 +111,17 @@ jobs:
 
     - name: Push archive.json to viewer repo (for GitHub Pages)
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git clone https://x-access-token:${GH_TOKEN}@github.com/Garry117S/rightmove-viewer.git viewer-repo
-        cp archive.json viewer-repo/docs/archive.json
+        mkdir -p viewer-repo/docs/results
+        ts=$(date +'%Y-%m-%d_%H-%M-%S')
+        cp results.json viewer-repo/docs/results/${ts}.json
+        echo "$ts" > viewer-repo/docs/results/latest.txt
         cd viewer-repo
-        git add docs/archive.json
-        git diff --cached --quiet || git commit -m "Update archive.json from scraper"
+        git add docs/results/
+        git diff --cached --quiet || git commit -m "Update results on $ts"
         git push
+
