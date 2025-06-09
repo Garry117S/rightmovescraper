@@ -72,11 +72,18 @@ for card in property_cards:
         "description": description
     }
 
-# === LOAD SEEN DATA ===
-seen_data = {}
+# Load previously seen properties
 if os.path.exists("seen.json"):
-    with open("seen.json", "r", encoding="utf-8") as f:
-        seen_data = json.load(f)
+    try:
+        with open("seen.json", "r", encoding="utf-8") as f:
+            content = f.read().strip()
+            seen_data = json.loads(content) if content else {}
+    except json.JSONDecodeError:
+        print("Warning: seen.json is corrupted or invalid. Starting fresh.")
+        seen_data = {}
+else:
+    seen_data = {}
+
 
 # === FIND NEW PROPERTIES ===
 new_properties = {
@@ -96,13 +103,23 @@ else:
 with open("seen.json", "w", encoding="utf-8") as f:
     json.dump(dict(sorted(properties.items())), f, indent=2, ensure_ascii=False)
 
+# === SAVE SEEN AND RESULTS ONLY IF THERE ARE RESULTS ===
+if properties:
+    with open("seen.json", "w", encoding="utf-8") as f:
+        json.dump(dict(sorted(properties.items())), f, indent=2, ensure_ascii=False)
+else:
+    print("No properties found. Skipping seen.json update.")
+
+# Save new results if any
 if new_properties:
-    # Save to latest.json for viewer
+    # Save latest.json (used by the viewer site)
     with open("latest.json", "w", encoding="utf-8") as f:
         json.dump(new_properties, f, indent=2, ensure_ascii=False)
 
-    # Save to timestamped file for history
+    # Save to timestamped archive file
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
     filename = f"results_{timestamp}.json"
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(new_properties, f, indent=2, ensure_ascii=False)
+else:
+    print("No new properties. Skipping latest.json and archive write.")
