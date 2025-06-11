@@ -96,7 +96,7 @@ jobs:
         git add seen.json latest.json || true
         git diff --cached --quiet || (git commit -m "Update seen and latest" && git push)
 
-    - name: Push latest.json to viewer repo
+    - name: Push latest.json and seen.json to viewer repo
       env:
         GH_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
       run: |
@@ -111,7 +111,11 @@ jobs:
         git clone https://x-access-token:${GH_TOKEN}@github.com/Garry117S/rightmove-viewer.git viewer-repo
         cp latest.json viewer-repo/docs/latest.json
 
+        if [ -f seen.json ]; then
+          cp seen.json viewer-repo/docs/seen.json
+        fi
+
         cd viewer-repo
-        git add docs/latest.json
-        git diff --cached --quiet || git commit -m "Update latest.json from scraper"
+        git add docs/latest.json docs/seen.json || true
+        git diff --cached --quiet || git commit -m "Update latest.json and seen.json from scraper"
         git push
