@@ -29,20 +29,6 @@ jobs:
           exit 0
         fi
 
-    - name: Append results to archive.json with timestamp
-      run: |
-        timestamp=$(date -u +"%Y-%m-%d %H:%M UTC")
-        jq --arg time "$timestamp" '[.[] | .timestamp = $time]' latest.json > temp.json
-
-        if [ -f archive.json ]; then
-          jq -s 'add' archive.json temp.json > combined.json
-        else
-          mv temp.json combined.json
-        fi
-
-        mv combined.json archive.json
-
-
     - name: Send email with HTML formatting
       env:
         EMAIL_USER: 1337.david.smith.1337
@@ -106,18 +92,25 @@ jobs:
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add seen.json latest.json archive.json || true
-        git diff --cached --quiet || (git commit -m "Update seen, latest, and archive" && git push)
+        git add seen.json latest.json || true
+        git diff --cached --quiet || (git commit -m "Update seen and latest" && git push)
 
-    - name: Push archive.json to viewer repo
+    - name: Push latest.json to viewer repo
       env:
         GH_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
       run: |
+        if [ ! -s latest.json ]; then
+          echo "latest.json is empty or missing. Skipping push to viewer repo."
+          exit 0
+        fi
+
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
         git clone https://x-access-token:${GH_TOKEN}@github.com/Garry117S/rightmove-viewer.git viewer-repo
-        cp archive.json viewer-repo/docs/archive.json
+        cp latest.json viewer-repo/docs/latest.json
+
         cd viewer-repo
-        git add docs/archive.json
-        git diff --cached --quiet || git commit -m "Update archive.json from scraper"
+        git add docs/latest.json
+        git diff --cached --quiet || git commit -m "Update latest.json from scraper"
         git push
