@@ -6,6 +6,26 @@ import re
 from hashlib import md5
 from datetime import datetime, timezone
 
+
+
+
+
+
+
+
+if os.path.exists("latest.json"):
+    os.remove("latest.json")
+
+
+
+
+
+
+
+
+
+
+
 # === CONFIGURATION ===
 url = "https://www.rightmove.co.uk/property-for-sale/find.html?searchLocation=Jesmond%2C+Newcastle+Upon+Tyne&useLocationIdentifier=true&locationIdentifier=REGION%5E13653&radius=0.0&maxDaysSinceAdded=7&_includeSSTC=on&index=0&sortType=2&channel=BUY&transactionType=BUY&displayLocationIdentifier=Jesmond.html"
 headers = {"User-Agent": "Mozilla/5.0"}

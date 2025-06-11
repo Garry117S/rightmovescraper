@@ -30,6 +30,7 @@ jobs:
         fi
 
     - name: Send email with HTML formatting
+      if: success() && hashFiles('latest.json') != ''
       env:
         EMAIL_USER: 1337.david.smith.1337
         EMAIL_PASS: ${{ secrets.EMAIL_PASSWORD }}
