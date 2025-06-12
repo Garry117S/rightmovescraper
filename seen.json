@@ -59,6 +59,16 @@
     "description": "Situated in the heart of Jesmond, this two-bedroom top-floor apartment offers a blend of modern living within a converted building comprising six individual flats. The property is ideal for first-time buyers, investors, or professionals seeking a vibrant urban lifestyle.",
     "timestamp": "2025-06-11T18:32:33Z"
   },
+  "prop161834540": {
+    "address": "Osborne Avenue, Jesmond, Newcastle Upon Tyne, Tyne & Wear, NE2",
+    "price": "£240,000",
+    "type": "Apartment",
+    "beds": "2",
+    "baths": "1",
+    "images": "11",
+    "description": "**Two Bedroom Apartment**Communal Gardens & Dedicated Parking**No Onward Chain** An impressive apartment, laterally arranged over the entire second floor of a late nineteenth century double fronted townhouse. The location is excellent, just a short walk from Osborne Road and Acorn Road amenit...",
+    "timestamp": "2025-06-12T18:34:52Z"
+  },
   "prop162937097": {
     "address": "Helmsley Road, Sandyford",
     "price": "£150,000",
@@ -128,5 +138,25 @@
     "images": "12",
     "description": "A beautiful second floor apartment, overlooking the rear gardens within this desirable development in the heart of Jesmond. The property is ideally located close to local amenities, including Waitrose and the Acorn Road shopping facilities. The development of Russell Court, was originally constru...",
     "timestamp": "2025-06-11T18:32:33Z"
+  },
+  "prop163220516": {
+    "address": "Flat 3, Byzantine House, 39 Eskdale Terrace, Jesmond, Newcastle upon Tyne",
+    "price": "£350,000",
+    "type": "Flat",
+    "beds": "2",
+    "baths": "2",
+    "images": "13",
+    "description": "Stunning Ground Floor Apartment Boasting Two Double Bedrooms, Two Bathrooms, Impressive Open Plan Kitchen, Living & Dining Room, Private Garden & Allocated Parking! Byzantine House was converted into ten luxurious apartments in 2019/2020 and offers a fantastic position set back from Eskdal...",
+    "timestamp": "2025-06-12T18:34:52Z"
+  },
+  "prop163222517": {
+    "address": "Claremont Terrace, Newcastle Upon Tyne, NE2",
+    "price": "£165,000",
+    "type": "Apartment",
+    "beds": "1",
+    "baths": "1",
+    "images": "25",
+    "description": "A superb top-floor apartment situated on the highly desirable Claremont Terrace in Spital Tongues — an exceptional opportunity for professionals, academics, or those looking to downsize without compromising on style or location. This charming and well-presented conversion...",
+    "timestamp": "2025-06-12T18:34:52Z"
   }
 }
