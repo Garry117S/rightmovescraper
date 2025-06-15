@@ -98,26 +98,27 @@ jobs:
         git add seen.json latest.json || true
         git diff --cached --quiet || (git commit -m "Update seen and latest" && git push)
 
-    - name: Push latest.json and seen.json to viewer repo
+    - name: Push scrape results to pointers repo
       env:
         GH_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
       run: |
         if [ ! -s latest.json ]; then
-          echo "latest.json is empty or missing. Skipping push to viewer repo."
+          echo "latest.json is empty or missing. Skipping push to pointers repo."
           exit 0
         fi
 
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-        git clone https://x-access-token:${GH_TOKEN}@github.com/Garry117S/rightmove-viewer.git viewer-repo
-        cp latest.json viewer-repo/docs/latest.json
+        git clone https://x-access-token:${GH_TOKEN}@github.com/Garry117S/pointers.git pointers-repo
+        mkdir -p pointers-repo/scrape
+        cp latest.json pointers-repo/scrape/latest.json
 
         if [ -f seen.json ]; then
-          cp seen.json viewer-repo/docs/seen.json
+          cp seen.json pointers-repo/scrape/seen.json
         fi
 
-        cd viewer-repo
-        git add docs/latest.json docs/seen.json || true
-        git diff --cached --quiet || git commit -m "Update latest.json and seen.json from scraper"
+        cd pointers-repo
+        git add scrape/latest.json scrape/seen.json || true
+        git diff --cached --quiet || git commit -m "Update scrape data from scraper"
         git push
