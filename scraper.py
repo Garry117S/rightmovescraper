@@ -95,7 +95,8 @@ for card in property_cards:
         "baths": baths,
         "images": image_count,
         "description": description,
-        "timestamp": timestamp
+        "timestamp": timestamp,
+        "link": href
     }
 
 # === LOAD SEEN PROPERTIES ===
