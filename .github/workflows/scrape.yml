@@ -68,7 +68,7 @@ jobs:
               <strong>Price:</strong> {price}<br>
               <strong>Type:</strong> {ptype}<br>
               <strong>Beds:</strong> {beds} | <strong>Baths:</strong> {baths} | <strong>Images:</strong> {images}<br>
-              <strong>Description:</strong> {desc}
+              <strong>Description:</strong> {desc}<br>
               <strong>Link:</strong> {link}
               <hr>
             </li>""")
