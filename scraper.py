@@ -46,6 +46,10 @@ if not results_section:
 property_cards = results_section.find_all("div", class_="PropertyCard_propertyCardContainerWrapper__mcK1Z")
 properties = {}
 
+
+base_url = "https://www.rightmove.co.uk/properties/"
+
+
 # === PARSE PROPERTIES ===
 for card in property_cards:
     a_tag = card.find("a", class_="PropertyCard_propertyCardAnchor__s2ZaP")
@@ -87,6 +91,8 @@ for card in property_cards:
 
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+    prop_url = base_url + prop_id
+
     properties[prop_id] = {
         "address": address,
         "price": price,
@@ -96,7 +102,7 @@ for card in property_cards:
         "images": image_count,
         "description": description,
         "timestamp": timestamp,
-        "link": href
+        "link": prop_url
     }
 
 # === LOAD SEEN PROPERTIES ===
