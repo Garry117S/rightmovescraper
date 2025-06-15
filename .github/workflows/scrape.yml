@@ -56,6 +56,7 @@ jobs:
             baths = prop.get("baths", "")
             images = prop.get("images", "")
             desc = prop.get("description", "")
+            link = prop.get("link", "")
 
             plain_lines += [f"Address: {address}", f"Price: {price}", f"Type: {ptype}",
                             f"Beds: {beds}", f"Baths: {baths}", f"Images: {images}",
@@ -68,6 +69,7 @@ jobs:
               <strong>Type:</strong> {ptype}<br>
               <strong>Beds:</strong> {beds} | <strong>Baths:</strong> {baths} | <strong>Images:</strong> {images}<br>
               <strong>Description:</strong> {desc}
+              <strong>Link:</strong> {link}
               <hr>
             </li>""")
 

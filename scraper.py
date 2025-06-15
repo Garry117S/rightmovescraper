@@ -91,7 +91,7 @@ for card in property_cards:
 
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    prop_url = base_url + prop_id
+    prop_url = base_url + prop_id[4:]
 
     properties[prop_id] = {
         "address": address,
