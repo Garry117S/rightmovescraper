@@ -1,13 +1,35 @@
 {
-  "prop163468454": {
-    "address": "Beatty Avenue, Jesmond, NE2",
-    "price": "£585,000",
-    "type": "Semi-Detached",
-    "beds": "4",
+  "prop163495079": {
+    "address": "Eslington Terrace, Jesmond, Newcastle Upon Tyne, Tyne & Wear, NE2",
+    "price": "£335,000",
+    "type": "Apartment",
+    "beds": "3",
+    "baths": "2",
+    "images": "21",
+    "description": "Tucked away on the elegant and tree-lined Eslington Terrace in the heart of Jesmond, this beautifully presented period property offers a generous and versatile living space across two levels, combining classic architectural features with contemporary comfort. As you approach the front of the prop...",
+    "timestamp": "2025-06-18T18:36:10Z",
+    "link": "https://www.rightmove.co.uk/properties/163495079"
+  },
+  "prop163501469": {
+    "address": "Ashleigh Grove, West Jesmond, Newcastle upon Tyne, Tyne and Wear, NE2",
+    "price": "£200,000",
+    "type": "Flat",
+    "beds": "2",
     "baths": "1",
-    "images": "28",
-    "description": "This most impressive extended semi detached family home enjoys a corner plot in Jesmond with gardens and accommodation that is spread over three floors.",
-    "timestamp": "2025-06-18T12:54:17Z",
-    "link": "https://www.rightmove.co.uk/properties/163468454"
+    "images": "15",
+    "description": "Spacious 2 Bedroom Ground Floor Tyneside Flat – Ashleigh Grove, Jesmond Located on the ever-popular Ashleigh Grove in the heart of Jesmond, this well-presented two-bedroom Tyneside flat offers a fantastic opportunity for first-time buyers, investors, or those looking to enjoy one...",
+    "timestamp": "2025-06-18T18:36:10Z",
+    "link": "https://www.rightmove.co.uk/properties/163501469"
+  },
+  "prop163489196": {
+    "address": "Flat 4, Deuchar House, 158 Sandyford Road, Newcastle upon Tyne NE2 1XG",
+    "price": "£80,000",
+    "type": "Flat",
+    "beds": "2",
+    "baths": "1",
+    "images": "10",
+    "description": "FOR SALE BY LIVESTREAMED ONLINE AUCTION ON TUESDAY 15th JULY 2024. For bidding registration, please visit auctionhouse.co.uk/northeast",
+    "timestamp": "2025-06-18T18:36:10Z",
+    "link": "https://www.rightmove.co.uk/properties/163489196"
   }
 }
