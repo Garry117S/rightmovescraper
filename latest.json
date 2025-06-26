@@ -1,13 +1,35 @@
 {
-  "prop160952609": {
-    "address": "Osborne Road, Jesmond",
-    "price": "£225,000",
-    "type": "Apartment",
+  "prop163840751": {
+    "address": "Burdon Terrace, Jesmond, Newcastle upon Tyne",
+    "price": "£325,000",
+    "type": "Flat",
     "beds": "2",
+    "baths": "1",
+    "images": "12",
+    "description": "Arguably one of Jesmond’s finest residential streets! A charming first floor apartment ideally located in the heart of Brandling Village Conservation Area on Burdon Terrace. Within walking distance to Newcastle City Centre, Burdon Terrace, a tree-lined avenue is perfectly placed close to the para...",
+    "timestamp": "2025-06-26T18:36:18Z",
+    "link": "https://www.rightmove.co.uk/properties/163840751"
+  },
+  "prop163834181": {
+    "address": "Newlands Road, High West Jesmond, Newcastle Upon Tyne",
+    "price": "£275,000",
+    "type": "Maisonette",
+    "beds": "3",
     "baths": "2",
     "images": "12",
-    "description": "DECEPTIVELY SPACIOUS TWO BEDROOM GROUND FLOOR APARTMENT WITH OFF STREET PARKING SITUATED CENTRALLY IN JESMOND WITH NO UPPER CHAIN. Brannen & Partners welcome to the market this well proportioned two bedroom, two bathroom ground floor apartment. Conveniently located close to local shops a...",
-    "timestamp": "2025-06-26T12:54:36Z",
-    "link": "https://www.rightmove.co.uk/properties/160952609"
+    "description": "Well Presented Upper ‘Tyneside’ Maisonette Apartment with Generous Front Living Room, Kitchen/Diner, Three Bedrooms, Family Bathroom, Private Rear Courtyard and No Onward Chain! This lovely three bedroom upper Tyneside maisonette is ideally located on Newlands Road, High West Jesmo...",
+    "timestamp": "2025-06-26T18:36:18Z",
+    "link": "https://www.rightmove.co.uk/properties/163834181"
+  },
+  "prop163841039": {
+    "address": "Valley View, Jesmond, Newcastle upon Tyne",
+    "price": "£210,000",
+    "type": "Flat",
+    "beds": "3",
+    "baths": "1",
+    "images": "12",
+    "description": "Manson's are please to bring to the sales market this three bedroom flat located on Valley View, Jesmond. The eclectic suburb of Jesmond lies close to Newcastle city centre and Jesmond Dene Park. It features bars, restaurants & shopping for all ages from boutique style shops to top brand supermar...",
+    "timestamp": "2025-06-26T18:36:18Z",
+    "link": "https://www.rightmove.co.uk/properties/163841039"
   }
 }
