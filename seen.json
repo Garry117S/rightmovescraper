@@ -1,4 +1,15 @@
 {
+  "prop147938234": {
+    "address": "Queens Road, Newcastle Upon Tyne",
+    "price": "£110,000",
+    "type": "Flat",
+    "beds": "1",
+    "baths": "1",
+    "images": "5",
+    "description": "Presenting this top floor one-bedroom flat, available for sale. Located in a central location, this flat is ideally positioned with local amenities in close proximity, offering a convenient lifestyle. The flat features a double bedroom, providing ample space for comfort and relaxation. Compl...",
+    "timestamp": "2025-06-27T12:53:04Z",
+    "link": "https://www.rightmove.co.uk/properties/147938234"
+  },
   "prop148617443": {
     "address": "Springbank Road, Sandyford, Newcastle Upon Tyne, NE2",
     "price": "£145,000",
@@ -372,6 +383,17 @@
     "description": "Manson's are please to bring to the sales market this three bedroom flat located on Valley View, Jesmond. The eclectic suburb of Jesmond lies close to Newcastle city centre and Jesmond Dene Park. It features bars, restaurants & shopping for all ages from boutique style shops to top brand supermar...",
     "timestamp": "2025-06-26T18:36:18Z",
     "link": "https://www.rightmove.co.uk/properties/163841039"
+  },
+  "prop163872311": {
+    "address": "Buston Terrace, Jesmond, Newcastle Upon Tyne",
+    "price": "£375,000",
+    "type": "Terraced",
+    "beds": "3",
+    "baths": "1",
+    "images": "12",
+    "description": "A Lovely Mid Terrace Family Home Offering Three Bedrooms, Living Room, Well Presented Dining Room & Kitchen, Family Bathroom, Front Town Garden & A Rear Courtyard! Occupying a prime position in the heart of Jesmond is this three bedroom, mid terraced home, which has been finished to a bea...",
+    "timestamp": "2025-06-27T12:53:04Z",
+    "link": "https://www.rightmove.co.uk/properties/163872311"
   },
   "prop86987391": {
     "address": "Chester Street, Sandyford, Newcastle upon Tyne",
