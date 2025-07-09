@@ -1,35 +1,24 @@
 {
-  "prop162247706": {
-    "address": "Granville Road Jesmond, NEWCASTLE UPON TYNE",
+  "prop162138959": {
+    "address": "Granville Road, Jesmond, Newcastle Upon Tyne, Tyne and Wear, NE2 1TP",
     "price": "£295,000",
     "type": "Maisonette",
     "beds": "2",
     "baths": "1",
-    "images": "18",
-    "description": "My property box are delighted to welcome to the market this stunning two bedroom well proportioned maisonette. The property is accessed from a private front door into the apartment. Perfectly situated in the heart of the South Jesmond Conservation Area on Granville Road and within sho...",
-    "timestamp": "2025-07-09T12:54:36Z",
-    "link": "https://www.rightmove.co.uk/properties/162247706"
+    "images": "14",
+    "description": "This stunning two bedroom, maisonette flat boasts charm and character throughout. Situated on leafy Granville Road - Offers Over £295,000 with no chain.",
+    "timestamp": "2025-07-09T18:37:29Z",
+    "link": "https://www.rightmove.co.uk/properties/162138959"
   },
-  "prop164336159": {
-    "address": "Greystoke Avenue, Sandyford, NE2",
-    "price": "£220,000",
-    "type": "Maisonette",
-    "beds": "4",
-    "baths": "2",
-    "images": "10",
-    "description": "This well presented four bedroom, upper maisonette is located in this popular residential street, Greystoke Avenue within Sandyford. Ideally positioned for direct access into Jesmond, Newcastle city centre, as well as for the university and RVI.",
-    "timestamp": "2025-07-09T12:54:36Z",
-    "link": "https://www.rightmove.co.uk/properties/164336159"
-  },
-  "prop134792075": {
-    "address": "Woodland News, Reid Park Road, Newcastle Upon Tyne",
-    "price": "£75,000",
-    "type": "Flat",
-    "beds": "1",
+  "prop162675857": {
+    "address": "Jesmond, Newcastle upon Tyne, Tyne and Wear, NE2",
+    "price": "£166,250",
+    "type": "Apartment",
+    "beds": "2",
     "baths": "1",
-    "images": "10",
-    "description": "First floor retirement apartment, situated on Reid Park Road in Jesmond for the over 60’s. Woodland Mews provides convenient access to a range of local amenities, shops, cafes and restaurants, as well as good transport links. The private accommodation includes a hall, lounge, fitted kitc...",
-    "timestamp": "2025-07-09T12:54:36Z",
-    "link": "https://www.rightmove.co.uk/properties/134792075"
+    "images": "8",
+    "description": "This apartment offers a fantastic opportunity to enjoy all the amenities and vibrant lifestyle that Jesmond has to offer, while providing a comfortable and stylish living space with excellent transport connections.",
+    "timestamp": "2025-07-09T18:37:29Z",
+    "link": "https://www.rightmove.co.uk/properties/162675857"
   }
 }

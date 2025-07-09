@@ -142,6 +142,17 @@
     "timestamp": "2025-06-15T16:36:45Z",
     "link": "https://www.rightmove.co.uk/properties/161834540"
   },
+  "prop162138959": {
+    "address": "Granville Road, Jesmond, Newcastle Upon Tyne, Tyne and Wear, NE2 1TP",
+    "price": "£295,000",
+    "type": "Maisonette",
+    "beds": "2",
+    "baths": "1",
+    "images": "14",
+    "description": "This stunning two bedroom, maisonette flat boasts charm and character throughout. Situated on leafy Granville Road - Offers Over £295,000 with no chain.",
+    "timestamp": "2025-07-09T18:37:29Z",
+    "link": "https://www.rightmove.co.uk/properties/162138959"
+  },
   "prop162247706": {
     "address": "Granville Road Jesmond, NEWCASTLE UPON TYNE",
     "price": "£295,000",
@@ -163,6 +174,17 @@
     "description": "PURPOSE BUILT APARTMENT with ALLOCATED COVERED PARKING, WEST FACING SUN TERRACE & NO ONWARD CHAIN! Boasting close to 800 Sq ft of internal living accommodation, this is an excellent opportunity to acquire a two-bedroom apartment located on the first floor of Blythswood, Jesmond. Situated on the c...",
     "timestamp": "2025-06-25T12:55:09Z",
     "link": "https://www.rightmove.co.uk/properties/162473114"
+  },
+  "prop162675857": {
+    "address": "Jesmond, Newcastle upon Tyne, Tyne and Wear, NE2",
+    "price": "£166,250",
+    "type": "Apartment",
+    "beds": "2",
+    "baths": "1",
+    "images": "8",
+    "description": "This apartment offers a fantastic opportunity to enjoy all the amenities and vibrant lifestyle that Jesmond has to offer, while providing a comfortable and stylish living space with excellent transport connections.",
+    "timestamp": "2025-07-09T18:37:29Z",
+    "link": "https://www.rightmove.co.uk/properties/162675857"
   },
   "prop163090652": {
     "address": "St. Georges Terrace, Jesmond, NE2",
