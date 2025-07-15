@@ -65,6 +65,17 @@
     "timestamp": "2025-06-19T12:53:21Z",
     "link": "https://www.rightmove.co.uk/properties/157436927"
   },
+  "prop158930630": {
+    "address": "Crossway, Jesmond, NE2",
+    "price": "£650,000",
+    "type": "Semi-Detached",
+    "beds": "4",
+    "baths": "3",
+    "images": "27",
+    "description": "This deceptively spacious and extended semi-detached family home enjoys a corner position in the heart of central Jesmond with off street parking good size rear garden which is ideal for families.",
+    "timestamp": "2025-07-15T18:39:30Z",
+    "link": "https://www.rightmove.co.uk/properties/158930630"
+  },
   "prop159208103": {
     "address": "Craghall Dene Avenue, South Gosforth, Newcastle upon Tyne",
     "price": "£360,000",
@@ -647,6 +658,17 @@
     "description": "This refurbished 3 bedroom terraced town house retains so many original features, generous room sizes and is positioned in an excellent location with direct access into the city centre via Metro.",
     "timestamp": "2025-07-14T18:39:49Z",
     "link": "https://www.rightmove.co.uk/properties/164478983"
+  },
+  "prop164545883": {
+    "address": "Larkspur Terrace, Jesmond, Newcastle upon Tyne",
+    "price": "£725,000",
+    "type": "Terraced",
+    "beds": "5",
+    "baths": "2",
+    "images": "15",
+    "description": "Mixing period features with modern detail, a wonderful example of a purpose built three-storey Victorian terrace, ideally located on Larkspur Terrace, Jesmond. This well presented family home benefits from an abundance of period features, a stunning 20ft open plan kitchen/dining room and west bac...",
+    "timestamp": "2025-07-15T18:39:30Z",
+    "link": "https://www.rightmove.co.uk/properties/164545883"
   },
   "prop86987391": {
     "address": "Chester Street, Sandyford, Newcastle upon Tyne",
