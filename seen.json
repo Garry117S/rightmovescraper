@@ -54,6 +54,17 @@
     "timestamp": "2025-07-05T12:49:28Z",
     "link": "https://www.rightmove.co.uk/properties/154030205"
   },
+  "prop154656050": {
+    "address": "1 Deepwood, Jesmond, Newcastle Upon Tyne, Tyne and Wear",
+    "price": "£1,400,000",
+    "type": "Detached",
+    "beds": "6",
+    "baths": "3",
+    "images": "26",
+    "description": "A unique and distinctive detached house with established gardens, nestled in a superb and private position, within a short walk of central Jesmond",
+    "timestamp": "2025-07-18T18:38:01Z",
+    "link": "https://www.rightmove.co.uk/properties/154656050"
+  },
   "prop157436927": {
     "address": "Deuchar House, Newcastle upon Tyne, NE2",
     "price": "£80,000",
@@ -746,6 +757,39 @@
     "description": "A superb buy-to-let investment opportunity in the highly sought-after area of Sunbury Avenue, Jesmond, promising a reliable annual income of £41,600 per annum and currently let until 27.7.26. This desirable student accommodation is also a compelling opportunity for investors aiming for so...",
     "timestamp": "2025-07-18T12:57:25Z",
     "link": "https://www.rightmove.co.uk/properties/164682572"
+  },
+  "prop164690585": {
+    "address": "Honister Avenue, Jesmond, NE2",
+    "price": "£300,000",
+    "type": "Terraced",
+    "beds": "3",
+    "baths": "2",
+    "images": "15",
+    "description": "**PRICED TO REFLECT FULL MODERNISATION THROUGHOUT!** Edwardian Mid Terraced Family Home Situated within High West Jesmond and Boasting an Open Plan Lounge Diner, Kitchen/Breakfast Room, Three Bedrooms, Family Bathroom plus Ground Floor Shower Room, Private Enclosed Rear Courtyard, Garage...",
+    "timestamp": "2025-07-18T18:38:01Z",
+    "link": "https://www.rightmove.co.uk/properties/164690585"
+  },
+  "prop164693060": {
+    "address": "Osborne Road, Jesmond, Newcastle Upon Tyne",
+    "price": "£265,000",
+    "type": "Flat",
+    "beds": "3",
+    "baths": "2",
+    "images": "6",
+    "description": "Occupying the first floor of this spacious double fronted property, is this fantastic three bedroom apartment situated on Osborne Road, Jesmond. Within easy walking distance of local shops, cafes and restaurants as well as public transport including West Jesmond Metro station. Briefly comprisin...",
+    "timestamp": "2025-07-18T18:38:01Z",
+    "link": "https://www.rightmove.co.uk/properties/164693060"
+  },
+  "prop164705996": {
+    "address": "9 La Sagesse, Newcastle Upon Tyne, NE2",
+    "price": "£575,000",
+    "type": "Detached Bungalow",
+    "beds": "2",
+    "baths": "2",
+    "images": "18",
+    "description": "This unique 2 bedroom detached former lodge forms part of the exclusive La Sagesse estate in the heart of Jesmond which offers single storey living with its own gardens and residents parking.",
+    "timestamp": "2025-07-18T18:38:01Z",
+    "link": "https://www.rightmove.co.uk/properties/164705996"
   },
   "prop86987391": {
     "address": "Chester Street, Sandyford, Newcastle upon Tyne",
