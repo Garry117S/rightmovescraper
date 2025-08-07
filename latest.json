@@ -1,13 +1,24 @@
 {
-  "prop165457661": {
-    "address": "Valley View, Jesmond, Newcastle Upon Tyne, NE2",
-    "price": "£200,000",
+  "prop160461935": {
+    "address": "Beatty Avenue, High West Jesmond, Newcastle Upon Tyne",
+    "price": "£450,000",
+    "type": "Semi-Detached",
+    "beds": "3",
+    "baths": "1",
+    "images": "19",
+    "description": "Beautifully Presented & Substantial Semi Detached Home Boasting Three Bedrooms, Attractive Family Bathroom, Two Reception Rooms, Open Plan Kitchen/Diner, Separate Utility, Garage, Driveway for One Vehicle and a Generous Rear Garden! This great three bedroom, semi-detached family home, is ideal...",
+    "timestamp": "2025-08-07T18:41:43Z",
+    "link": "https://www.rightmove.co.uk/properties/160461935"
+  },
+  "prop165467825": {
+    "address": "Adderstone Crescent, Newcastle Upon Tyne",
+    "price": "£155,000",
     "type": "Flat",
     "beds": "2",
     "baths": "1",
-    "images": "20",
-    "description": "Super Stylish Two Bedroom Ground Floor ‘Tyneside’ Apartment with Generous Kitchen, Modern Re-Fitted Shower Room, Bespoke Fitted Alcove Units, Fitted Wardrobes and Private Rear Yard! This excellent, two bedroom ground floor ‘Tyneside’ apartment is ideally situated on the Valley View, Jesm...",
-    "timestamp": "2025-08-07T12:59:58Z",
-    "link": "https://www.rightmove.co.uk/properties/165457661"
+    "images": "6",
+    "description": "Presenting an immaculate two-bedroom retirement flat, available exclusively for over 55's and situated within a highly sought after location. This exceptional property has been thoughtfully designed to provide a comfortable and accessible living environment, ideal for those seeking a peaceful y...",
+    "timestamp": "2025-08-07T18:41:43Z",
+    "link": "https://www.rightmove.co.uk/properties/165467825"
   }
 }
