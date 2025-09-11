@@ -1539,6 +1539,28 @@
     "timestamp": "2025-09-11T12:49:03Z",
     "link": "https://www.rightmove.co.uk/properties/166866746"
   },
+  "prop166880786": {
+    "address": "Chandler Court, Adderstone Crescent, Jesmond, Newcastle Upon Tyne",
+    "price": "£399,000",
+    "type": "Flat",
+    "beds": "3",
+    "baths": "1",
+    "images": "9",
+    "description": "A rare opportunity to purchase this lovely three bedroom apartment, offering great views from the rear over Jesmond Dene. Positioned on the top floor of the block in Chandler Court, the property offers well proportioned accommodation and enjoys excellent natural light, as well as offering und...",
+    "timestamp": "2025-09-11T18:30:25Z",
+    "link": "https://www.rightmove.co.uk/properties/166880786"
+  },
+  "prop166883747": {
+    "address": "4 Adderstone Court, Adderstone Crescent, Jesmond, Newcastle Upon Tyne, Tyne and Wear",
+    "price": "£395,000",
+    "type": "Apartment",
+    "beds": "3",
+    "baths": "2",
+    "images": "15",
+    "description": "A stylish ground floor apartment in Jesmond Dene’s most exclusive gated development with secure parking and furnished interiors",
+    "timestamp": "2025-09-11T18:30:25Z",
+    "link": "https://www.rightmove.co.uk/properties/166883747"
+  },
   "prop86987391": {
     "address": "Chester Street, Sandyford, Newcastle upon Tyne",
     "price": "£135,000",
